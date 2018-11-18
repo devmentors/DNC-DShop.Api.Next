@@ -1,0 +1,25 @@
+name: orders
+path: /orders
+routes:
+- upstream: /
+  method: GET
+  use: downstream
+  downstream: orders-service/orders
+- upstream: /{orderId}
+  method: GET
+  use: downstream
+  downstream: orders-service/orders/{orderId}
+- upstream: /
+  method: POST
+  use: dispatcher
+  exchange: orders.create_order
+  routing_key: create_order
+  bind:
+  - customerId:{user_id}
+  transform:
+  - test:nothing
+  payload: create_order
+  scheme: create_order.scheme
+services:
+  orders-service:
+    url: localhost:9999/orders-service
