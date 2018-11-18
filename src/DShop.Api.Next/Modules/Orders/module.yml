@@ -4,11 +4,15 @@ routes:
 - upstream: /
   method: GET
   use: downstream
-  downstream: orders-service/orders
-- upstream: /{orderId}
+  downstream: orders-service/orders?customerId={user_id}
+- upstream: /{id}
   method: GET
   use: downstream
-  downstream: orders-service/orders/{orderId}
+  downstream: orders-service/orders/{id}
+  ensure:
+    - response.data.customerId={userId}
+  bind:
+  - customerId:{user_id}
 - upstream: /
   method: POST
   use: dispatcher
@@ -16,10 +20,37 @@ routes:
   routing_key: create_order
   bind:
   - customerId:{user_id}
-  transform:
-  - test:nothing
   payload: create_order
   scheme: create_order.scheme
+- upstream: /{id}/complete
+  method: POST
+  use: dispatcher
+  exchange: orders.complete_order
+  routing_key: complete_order
+  bind:
+  - customerId:{user_id}
+  payload: complete_order
+  scheme: complete_order.scheme
+- upstream: /{id}/approve
+  method: POST
+  use: dispatcher
+  exchange: orders.approve_order
+  routing_key: approve_order
+  bind:
+  - customerId:{user_id}
+  payload: approve_order
+  scheme: approve_order.scheme
+  claims:
+    role: admin
+- upstream: /{id}
+  method: DELETE
+  use: dispatcher
+  exchange: orders.cancel_order
+  routing_key: cancel_order
+  bind:
+  - customerId:{user_id}
+  payload: cancel_order
+  scheme: cancel_order.scheme
 services:
   orders-service:
     url: localhost:9999/orders-service

@@ -5,10 +5,12 @@ routes:
   method: GET
   use: downstream
   downstream: products-service/products
-- upstream: /{productId}
+  auth: false
+- upstream: /{id}
   method: GET
   use: downstream
-  downstream: products-service/products/{productId}
+  downstream: products-service/products/{id}
+  auth: false
 - upstream: /
   method: POST
   use: dispatcher
@@ -18,8 +20,24 @@ routes:
   scheme: create_product.scheme
   claims:
     role: admin
-  policies:
-  - product_manager
+- upstream: /{id}
+  method: PUT
+  use: dispatcher
+  exchange: products.update_product
+  routing_key: update_product
+  payload: update_product
+  scheme: update_product.scheme
+  claims:
+    role: admin
+- upstream: /{id}
+  method: DELETE
+  use: dispatcher
+  exchange: products.delete_product
+  routing_key: delete_product
+  payload: delete_product
+  scheme: delete_product.scheme
+  claims:
+    role: admin
 services:
   products-service:
     url: localhost:9999/products-service

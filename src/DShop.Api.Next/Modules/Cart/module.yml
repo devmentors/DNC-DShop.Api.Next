@@ -1,0 +1,37 @@
+name: cart
+path: /cart
+routes:
+- upstream: /
+  method: GET
+  use: downstream
+  downstream: customers-service/carts/{userId}
+- upstream: /items
+  method: POST
+  use: dispatcher
+  exchange: customers.add_product_to_cart
+  routing_key: add_product_to_cart
+  payload: add_product_to_cart
+  scheme: add_product_to_cart.scheme
+  bind:
+  - customerId:{user_id}
+- upstream: /items/{productId}
+  method: DELETE
+  use: dispatcher
+  exchange: customers.delete_product_from_cart
+  routing_key: delete_product_from_cart
+  payload: delete_product_from_cart
+  scheme: delete_product_from_cart.scheme
+  bind:
+  - customerId:{user_id}
+- upstream: /
+  method: DELETE
+  use: dispatcher
+  exchange: customers.clear_cart
+  routing_key: clear_cart
+  payload: clear_cart
+  scheme: clear_cart.scheme
+  bind:
+  - customerId:{user_id}
+services:
+  customers-service:
+    url: localhost:9999/customers-service
