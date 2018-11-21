@@ -1,56 +1,62 @@
-name: orders
+name: Orders
 path: /orders
+
 routes:
 - upstream: /
   method: GET
   use: downstream
-  downstream: orders-service/orders?customerId={user_id}
-- upstream: /{id}
+  downstream: orders-service/orders?customerId=@user_id
+  
+- upstream: /{id:guid}
   method: GET
   use: downstream
-  downstream: orders-service/orders/{id}
-  ensure:
-    - response.data.customerId={userId}
-  bind:
-  - customerId:{user_id}
+  downstream: orders-service/customers/@user_id/orders/{id}
+  
 - upstream: /
   method: POST
   use: dispatcher
   exchange: orders.create_order
   routing_key: create_order
   bind:
-  - customerId:{user_id}
+  - customerId:@user_id
   payload: create_order
-  scheme: create_order.scheme
-- upstream: /{id}/complete
+  schema: create_order.schema
+  
+- upstream: /{id:guid}/complete
   method: POST
   use: dispatcher
   exchange: orders.complete_order
   routing_key: complete_order
   bind:
-  - customerId:{user_id}
+  - id:{id}
+  - customerId:@user_id
   payload: complete_order
-  scheme: complete_order.scheme
-- upstream: /{id}/approve
+  schema: complete_order.schema
+  
+- upstream: /{id:guid}/approve
   method: POST
   use: dispatcher
   exchange: orders.approve_order
   routing_key: approve_order
   bind:
-  - customerId:{user_id}
+  - id:{id}
   payload: approve_order
-  scheme: approve_order.scheme
+  schema: approve_order.schema
   claims:
     role: admin
-- upstream: /{id}
+    
+- upstream: /{id:guid}
   method: DELETE
   use: dispatcher
   exchange: orders.cancel_order
   routing_key: cancel_order
   bind:
-  - customerId:{user_id}
+  - id:{id}
+  - customerId:@user_id
   payload: cancel_order
-  scheme: cancel_order.scheme
+  schema: cancel_order.schema
+
 services:
   orders-service:
-    url: localhost:9999/orders-service
+    url: localhost:5005
+#    url: localhost:9999/orders-service

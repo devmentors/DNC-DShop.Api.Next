@@ -6,13 +6,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ngate" Version="0.0.1" />
+    <PackageReference Include="NGate" Version="0.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="ngate.yml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Modules\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Settings\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Update="Modules\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Settings\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
