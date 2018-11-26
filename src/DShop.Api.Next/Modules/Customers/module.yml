@@ -21,6 +21,8 @@ routes:
   use: dispatcher
   exchange: customers.create_customer
   routing_key: create_customer
+  bind:
+  - id:@user_id
   payload: create_customer
   schema: create_customer.schema
   

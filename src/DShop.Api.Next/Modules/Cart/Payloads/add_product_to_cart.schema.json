@@ -1,0 +1,44 @@
+{
+	"definitions": {},
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "http://example.com/root.json",
+	"type": "object",
+	"title": "The Root Schema",
+	"required": [
+	  "customerId",
+	  "productId",
+	  "quantity"
+	],
+	"properties": {
+	  "customerId": {
+		"$id": "#/properties/customerId",
+		"type": "string",
+		"title": "The Customerid Schema",
+		"default": "",
+		"examples": [
+		  ""
+		],
+		"pattern": "^(.*)$"
+	  },
+	  "productId": {
+		"$id": "#/properties/productId",
+		"type": "string",
+		"title": "The Productid Schema",
+		"default": "",
+		"examples": [
+		  ""
+		],
+		"pattern": "^(.*)$"
+	  },
+	  "quantity": {
+		"$id": "#/properties/quantity",
+		"type": "integer",
+		"title": "The Quantity Schema",
+		"minimum": 1,
+		"default": 1,
+		"examples": [
+		  1, 5, 10
+		]
+	  }
+	}
+  }
