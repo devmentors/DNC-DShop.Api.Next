@@ -32,7 +32,7 @@ auth:
     audience:
     audiences:
     validate_audience: false
-    validate_lifetime: false
+    validate_lifetime: true
   claims:
     role: http://schemas.microsoft.com/ws/2008/06/identity/claims/role
 #  policies:
