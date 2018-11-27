@@ -1,4 +1,4 @@
-@apiUrl = http://localhost:5050
+@apiUrl = http://localhost:5000
 @identityServiceUrl = http://localhost:5002
 @accessToken = xxxxxxxxxxxxxxxxxx
 @refreshToken = xxxxxxxxxxxxxxxxxx
