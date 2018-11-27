@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NGate" Version="0.0.3" />
+    <PackageReference Include="NGate_" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
