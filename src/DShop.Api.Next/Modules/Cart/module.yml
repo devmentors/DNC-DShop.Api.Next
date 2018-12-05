@@ -10,8 +10,8 @@ routes:
 - upstream: /items
   method: POST
   use: dispatcher
-  exchange: customers.add_product_to_cart
-  routing_key: add_product_to_cart
+  exchange: customers
+  routing_key: customers.add_product_to_cart
   payload: add_product_to_cart
   schema: add_product_to_cart.schema
   bind:
@@ -20,8 +20,8 @@ routes:
 - upstream: /items/{productId:guid}
   method: DELETE
   use: dispatcher
-  exchange: customers.delete_product_from_cart
-  routing_key: delete_product_from_cart
+  exchange: customers
+  routing_key: customers.delete_product_from_cart
   payload: delete_product_from_cart
   schema: delete_product_from_cart.schema
   bind:
@@ -31,8 +31,8 @@ routes:
 - upstream: /
   method: DELETE
   use: dispatcher
-  exchange: customers.clear_cart
-  routing_key: clear_cart
+  exchange: customers
+  routing_key: customers.clear_cart
   payload: clear_cart
   schema: clear_cart.schema
   bind:

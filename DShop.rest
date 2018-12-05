@@ -89,7 +89,7 @@ POST {{identityServiceUrl}}/sign-up
 content-type: application/json
 
 {
-	"email": "dshop-user3@mailinator.com",
+	"email": "dshop-user@mailinator.com",
 	"password": "secret",
 	"role": "user"
 }
