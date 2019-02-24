@@ -1,6 +1,6 @@
 @apiUrl = http://localhost:5000
 @identityServiceUrl = http://localhost:5002
-@accessToken = xxxxxxxxxxxxxxxxxx
+@accessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjlkYjg1ZjdiZWU0YmY3ODlhYzA2MGQ4OGMxZDAzNyIsInVuaXF1ZV9uYW1lIjoiN2Y5ZGI4NWY3YmVlNGJmNzg5YWMwNjBkODhjMWQwMzciLCJqdGkiOiI5YTI2NGI2MC01NjJmLTRmMTQtODk5Ny03N2Q1NjUxODUzYTEiLCJpYXQiOiIxNTQ4MTk1Nzg1NzQ1IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoidXNlciIsIm5iZiI6MTU0ODE5NTc4NSwiZXhwIjoxNTQ4MTk3NTg1LCJpc3MiOiJkc2hvcC1pZGVudGl0eS1zZXJ2aWNlIn0.QaNzpWhdcmAZ_KIRbgwhsksYTm8VyibP23SYsMMS5pg
 @refreshToken = xxxxxxxxxxxxxxxxxx
 @operationId = xxxxxxxxxxxxxxxxxx
 @productId = xxxxxxxxxxxxxxxxxx
@@ -89,7 +89,7 @@ POST {{identityServiceUrl}}/sign-up
 content-type: application/json
 
 {
-	"email": "dshop-user@mailinator.com",
+	"email": "dshop-user3@mailinator.com",
 	"password": "secret",
 	"role": "user"
 }
@@ -99,7 +99,7 @@ POST {{identityServiceUrl}}/sign-in
 content-type: application/json
 
 {
-	"email": "dshop-user@mailinator.com",
+	"email": "dshop-user3@mailinator.com",
 	"password": "secret"
 }
 

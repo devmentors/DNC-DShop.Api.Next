@@ -6,11 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NGate_" Version="1.0.0" />
+    <PackageReference Include="Ntrada_" Version="1.0.1" />
+    <PackageReference Include="Ntrada.Extensions.RabbitMq_" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ngate.yml">
+    <None Update="ntrada.yml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Modules\**">
