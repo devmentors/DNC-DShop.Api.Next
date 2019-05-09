@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk AS build
 WORKDIR /app
 
 ARG sln=DShop.Api.Next.sln
@@ -13,7 +13,7 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish ${api} -c ${configuration} -o out
 
-FROM microsoft/dotnet:2.1-aspnetcore-runtime
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
 
 ARG api=src/DShop.Api.Next
